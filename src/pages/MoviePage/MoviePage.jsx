@@ -6,13 +6,13 @@ import PageTitle from "../../components/TitlePage/TitlePage.jsx";
 import Session from "../../components/Session/Session.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 
-const MoviePage = () => {
+const MoviePage = ({isMovieSeats, setIsMovieSeats}) => {
     const {idMovie} = useParams()
     const [infoMovie, setInfoMovie] = useState([]);
     const [infoDaysMovie, setInfoDaysMovie] = useState([]);
 
     useEffect(()=> {
-        async function getInfoMovie(idMovie) {
+        async function getInfoMovie() {
             try {
                 const data = await api.get(`/movies/${idMovie}/showtimes`)
                 setInfoMovie(data.data)
@@ -21,17 +21,18 @@ const MoviePage = () => {
                 console.log(error)
             }
         }
-       getInfoMovie(idMovie)
+       getInfoMovie()
     }, [idMovie])
+
     return (
         <>
             <PageTitle title={"Selecione o horário"} />
             <SessionsContainer>
                 {
-                infoDaysMovie.map((session, index) => <Session session={session} key={index} />)
+                infoDaysMovie.map((session, index) => <Session session={session} key={index} setIsMovieSeats={setIsMovieSeats} />)
                 }
             </SessionsContainer>
-            <Footer infoMovie={infoMovie} />
+            <Footer infoMovieFooter={infoMovie} isMovieSeats={isMovieSeats} setIsMovieSeats={setIsMovieSeats}/>
         </>
     )
 }

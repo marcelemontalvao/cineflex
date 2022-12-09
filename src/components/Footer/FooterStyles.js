@@ -22,11 +22,17 @@ export const FooterContainer = styled.footer`
         margin-left: 10px;
     }
 
-    h1 {
+    h1, span {
         font-size: 26px;
         line-height: 30px;
         display: flex;
         align-items: center;
         color: #293845;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
     }
 `

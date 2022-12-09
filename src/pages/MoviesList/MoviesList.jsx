@@ -4,7 +4,7 @@ import { MoviesContainer } from "./MoviesListStyle.js"
 import Movie from "../../components/Movie/Movie"
 import TitlePage from "../../components/TitlePage/TitlePage"
 
-const MoviesList = () => {
+const MoviesList = ({setIsMovieSeats}) => {
     const [allMovies, setAllMovies] = useState([])
     useEffect(()=> {
         async function getMovies() {
@@ -21,7 +21,7 @@ const MoviesList = () => {
         <>
             <TitlePage title={"Selecione o filme"} />
             <MoviesContainer>
-                {allMovies.map((movie, index) => <Movie movie={movie} key={index}/>)}
+                {allMovies.map((movie, index) => <Movie setIsMovieSeats={setIsMovieSeats} movie={movie} key={index}/>)}
             </MoviesContainer>
         </>
         

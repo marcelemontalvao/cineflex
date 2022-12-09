@@ -1,11 +1,24 @@
-import { FooterContainer } from "./FooterStyles"
+import { FooterContainer } from "./FooterStyles.js"
 
-const Footer = ({infoMovie}) => {
+const Footer = ({isMovieSeats, infoMovieFooter, weekday}) => {
     return (
-        <FooterContainer>
-            <img src={infoMovie.posterURL} alt={infoMovie.title} />
-            <h1>{infoMovie.title}</h1>
-        </FooterContainer>
+        <>
+             { isMovieSeats 
+                ? 
+                    <FooterContainer>
+                        <img src={infoMovieFooter.posterURL} alt={infoMovieFooter.title} /> 
+                        <div>
+                            <h1>{infoMovieFooter.title}</h1>
+                            <span>{weekday.day.weekday} - {weekday.name}</span>
+                        </div>
+                    </FooterContainer> 
+                :
+                    <FooterContainer>
+                        <img src={infoMovieFooter.posterURL} alt={infoMovieFooter.title} /> 
+                        <h1>{infoMovieFooter.title}</h1>
+                    </FooterContainer> 
+            } 
+        </>
     )
 }
 
