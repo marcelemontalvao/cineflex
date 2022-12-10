@@ -23,7 +23,6 @@ const MoviePage = ({isMovieSeats, setIsMovieSeats}) => {
         }
        getInfoMovie()
     }, [idMovie])
-
     return (
         <>
             <PageTitle title={"Selecione o horário"} />
