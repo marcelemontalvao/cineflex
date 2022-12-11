@@ -4,6 +4,7 @@ import Header from '../Header/Header.jsx';
 import MoviesList from '../../pages/MoviesList/MoviesList.jsx';
 import MoviePage from '../../pages/MoviePage/MoviePage.jsx';
 import MovieSeats from '../../pages/MovieSeats/MovieSeats.jsx';
+import SucessPage from '../../pages/SucessPage/SucessPage.jsx';
 import { useState } from 'react';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path='/' element={<MoviesList setIsMovieSeats={setIsMovieSeats} />} />
           <Route path='/sessoes/:idMovie' element={<MoviePage isMovieSeats={isMovieSeats} setIsMovieSeats={setIsMovieSeats} />} />
           <Route path='/assentos/:idSeat' element={<MovieSeats isMovieSeats={isMovieSeats} />} />
+          <Route path='/sucesso' element={<SucessPage />} />
       </Routes>
     </BrowserRouter>
   );
