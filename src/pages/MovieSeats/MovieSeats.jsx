@@ -2,14 +2,18 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { api } from "../../services/api.js"
 import PageTitle from "../../components/TitlePage/TitlePage.jsx";
-import { SeatsContainer, SeatStyle, FooterContainer, DivSeats, CaptionsDiv, CaptionDiv, InputsContainer} from './MovieSeatsStyle.js';
+import { SeatsContainer, SeatStyle, FooterContainer, DivSeats, CaptionsDiv, CaptionDiv, FormContainer} from './MovieSeatsStyle.js';
+import Seat from '../../components/Seat/Seat.jsx';
 
 const MovieSeats = () => {
     const {idSeat} = useParams()
     const [seats, setSeats] = useState([]);
     const [response, setResponse] = useState([]);
     const [loading, setLoading] = useState(true);
-    
+    const [selectedSeats, setSelectedSeats] = useState([])
+    const [name, setName] = useState("")
+    const [cpf, setCpf] = useState("")
+    const [objectOrder, setObjectOrder] = useState({})
 
     useEffect(()=> {
         async function getSeats() {
@@ -33,8 +37,7 @@ const MovieSeats = () => {
                 <PageTitle title={"Selecione o(s) assento(s)"} />
                 <SeatsContainer>
                     <DivSeats>
-                        {seats.map((seat, index) => <SeatStyle isAvailable={seat.isAvailable} key={index}>{seat.name}</SeatStyle>
-                        )}
+                        {seats.map((seat, index) => <Seat seat={seat} key={index}/>)}
                     </DivSeats>
                     <CaptionsDiv>
                         <span>
@@ -51,18 +54,18 @@ const MovieSeats = () => {
                         </span>
                     </CaptionsDiv>
                 </SeatsContainer> 
-                <InputsContainer>
+                <FormContainer>
                     <label>
                         <span>Nome do comprador:</span>
-                        <input type="text" placeholder='Digite seu nome...' />
+                        <input data-test="client-name"  type="text" placeholder='Digite seu nome...' />
                     </label>
                     <label>
                         <span>CPF do comprador:</span>
-                        <input type="text" placeholder='Digite seu CPF...' />
+                        <input data-test="client-cpf" type="text" placeholder='Digite seu CPF...' />
                     </label>
-                    <button>Reservar assento(s)</button>
-                </InputsContainer>
-                <FooterContainer>
+                    <button data-test="book-seat-btn">Reservar assento(s)</button>
+                </FormContainer>
+                <FooterContainer data-test="footer">
                     <img src={response.movie.posterURL} alt={response.movie.title} /> 
                     <div>
                         <h1>{response.movie.title}</h1>

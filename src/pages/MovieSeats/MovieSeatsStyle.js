@@ -17,24 +17,6 @@ export const DivSeats = styled.div `
     gap: 8px;
 `
 
-export const SeatStyle = styled.div`
-    width: 26px;
-    height: 26px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: ${(props) => `${props.isAvailable}` ? "#C3CFD9" : "#FBE192"};
-    border: 1px solid #808F9D;
-    border-radius: 50%;   
-    font-size: 11px;
-    line-height: 13px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    letter-spacing: 0.04em;
-    color: #000000;
-`
-
 export const FooterContainer = styled.footer`
     width: 100%;
     height: 117px;
@@ -101,7 +83,7 @@ export const CaptionDiv = styled.div`
     cursor: ${(props) => props.isAvailable ? "pointer" : props.isSelected ? "pointer" : "default"}; ;
 `
 
-export const InputsContainer = styled.div`
+export const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
