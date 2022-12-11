@@ -2,20 +2,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { api } from "../../services/api.js"
 import TitlePage from "../../components/TitlePage/TitlePage.jsx";
-import { SeatsContainer,
-    FooterContainer, 
-    DivSeats, 
-    CaptionsDiv, 
-    CaptionDiv, 
-    FormContainer} from './MovieSeatsStyle.js';
+import { SeatsContainer,FooterContainer, DivSeats, CaptionsDiv, CaptionDiv, FormContainer} from './MovieSeatsStyle.js';
 import Seat from '../../components/Seat/Seat.jsx';
 
 const MovieSeats = ({selectedSeats, setSelectedSeats, name, setName, cpf, setCpf, response, setResponse}) => {
-    const {idSeat} = useParams()
+    const {idSeat} = useParams();
     const [seats, setSeats] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [objectOrder, setObjectOrder] = useState({})
-    const navigate = useNavigate()
+    const [objectOrder, setObjectOrder] = useState({});
+    const navigate = useNavigate();
 
     useEffect(()=> {
         async function getSeats() {
@@ -29,23 +24,23 @@ const MovieSeats = ({selectedSeats, setSelectedSeats, name, setName, cpf, setCpf
             }
         }
         getSeats()
-    }, [idSeat])
+    }, [idSeat]);
     
     useEffect(()=> {    
         setObjectOrder({ids: selectedSeats, name: name, cpf: cpf})
-    }, [cpf])
+    }, [cpf]);
     
     const reserveSeats = () => {
         
         async function postSeats() {
             try {
-                await api.post('/seats/book-many', objectOrder)
-                navigate("/sucesso")
+                await api.post('/seats/book-many', objectOrder);
+                navigate("/sucesso");
             } catch (error) {
-                console.log("Erro:" + error)
+                console.log("Erro:" + error);
             }
         }
-        postSeats()
+        postSeats();
     }
 
     if(loading){

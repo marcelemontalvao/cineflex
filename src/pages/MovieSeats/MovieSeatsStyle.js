@@ -80,7 +80,7 @@ export const CaptionDiv = styled.div`
     background-color: ${(props) => props.isSelected ? "#1AAE9E" : props.isAvailable ? "#C3CFD9" : "#FBE192"}; 
     border: 1px solid ${(props) => props.isSelected ? "#0E7D71" : props.isAvailable ? "#7B8B99" : "#F7C52B"};
     border-radius: 17px; 
-    cursor: ${(props) => props.isAvailable ? "pointer" : props.isSelected ? "pointer" : "default"}; ;
+    cursor: ${(props) => props.isAvailable ? "pointer" : props.isSelected ? "pointer" : "default"};
 `
 
 export const FormContainer = styled.div`

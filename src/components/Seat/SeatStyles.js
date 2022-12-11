@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const SeatStyle = styled.div`
     width: 26px;
@@ -15,4 +15,5 @@ export const SeatStyle = styled.div`
     text-align: center;
     letter-spacing: 0.04em;
     color: #000000;
+    cursor: ${(props) => props.isAvailable ? "pointer" : props.isSelected ? "pointer" : "default"};
 `

@@ -4,7 +4,7 @@ import { InfoMovie, ButtonToInitialPage } from "./SucessPageStyle"
 
 const SucessPage = ({infoMovie, setInfoMovie, selectedSeats, setSelectedSeats, name, setName, cpf, setCpf, response, setResponse}) => {
     const navigate = useNavigate()
-
+    console.log(response)
     const goToHome = () => {
         setInfoMovie([])
         setSelectedSeats([])
@@ -20,7 +20,7 @@ const SucessPage = ({infoMovie, setInfoMovie, selectedSeats, setSelectedSeats, n
             <InfoMovie  data-test="movie-info">
                 <span>Filme e sessão</span>
                 <p>{infoMovie.title}</p>
-                <p>{response.day.weekday} - {response.name}</p>
+                <p>{response.day.date} - {response.name}</p>
             </InfoMovie>
             <InfoMovie  data-test="seats-info">
                 <span>Ingressos</span>
