@@ -1,6 +1,6 @@
 import { FooterContainer } from "./FooterStyles.js"
 
-const Footer = ({isMovieSeats, infoMovieFooter, weekday}) => {
+const Footer = ({infoMovieFooter}) => {
     return (
         <>
             <FooterContainer data-test="footer">

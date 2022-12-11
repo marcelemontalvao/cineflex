@@ -17,22 +17,22 @@ const SucessPage = ({infoMovie, setInfoMovie, selectedSeats, setSelectedSeats, n
     return (
         <>
             <TitlePage title={"Pedido feito com sucesso!"} fontWeight={"fontWeight"} color={"color"} />
-            <InfoMovie>
+            <InfoMovie  data-test="movie-info">
                 <span>Filme e sessão</span>
                 <p>{infoMovie.title}</p>
                 <p>{response.day.weekday} - {response.name}</p>
             </InfoMovie>
-            <InfoMovie>
+            <InfoMovie  data-test="seats-info">
                 <span>Ingressos</span>
                 {selectedSeats.map(seat => <p>Assento {seat}</p>)}
             </InfoMovie>
-            <InfoMovie>
+            <InfoMovie  data-test="client-info">
                 <span>Comprador</span>
                 <p>Nome: {name}</p>
                 <p>CPF: {cpf}</p>
             </InfoMovie>
             <ButtonToInitialPage>
-                <button onClick={() => goToHome()}>Voltar para Home</button>
+                <button data-test="go-home-btn" onClick={() => goToHome()}>Voltar para Home</button>
             </ButtonToInitialPage>
         </>
     )
