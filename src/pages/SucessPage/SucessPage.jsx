@@ -1,28 +1,41 @@
-const SucessPage = () => {
+import { useNavigate } from "react-router-dom"
+import TitlePage from "../../components/TitlePage/TitlePage"
+import { InfoMovie, ButtonToInitialPage } from "./SucessPageStyle"
 
-    // // useEffect(()=> {
-    // //     async function getInfoMovie() {
-    // //         try {
-    // //             const data = await api.get(`/movies/${idMovie}/showtimes`)
-    // //             setInfoMovie(data.data)
-    // //             setInfoDaysMovie(data.data.days)
-    // //         } catch (error) {
-    // //             console.log(error)
-    // //         }
-    // //     }
-    // //    getInfoMovie()
-    // // }, [idMovie])
-    // return (
-    //     <>
-    //         <PageTitle title={"Selecione o horário"} />
-    //         <SessionsContainer>
-    //             {
-    //             infoDaysMovie.map((session, index) => <Session session={session} key={index} setIsMovieSeats={setIsMovieSeats} />)
-    //             }
-    //         </SessionsContainer>
-    //         <Footer infoMovieFooter={infoMovie} isMovieSeats={isMovieSeats} setIsMovieSeats={setIsMovieSeats}/>
-    //     </>
-    // )
+const SucessPage = ({infoMovie, setInfoMovie, selectedSeats, setSelectedSeats, name, setName, cpf, setCpf, response, setResponse}) => {
+    const navigate = useNavigate()
+
+    const goToHome = () => {
+        setInfoMovie([])
+        setSelectedSeats([])
+        setName("")
+        setCpf("")
+        setResponse([])
+        navigate("/")
+    }
+
+    return (
+        <>
+            <TitlePage title={"Pedido feito com sucesso!"} fontWeight={"fontWeight"} color={"color"} />
+            <InfoMovie>
+                <span>Filme e sessão</span>
+                <p>{infoMovie.title}</p>
+                <p>{response.day.weekday} - {response.name}</p>
+            </InfoMovie>
+            <InfoMovie>
+                <span>Ingressos</span>
+                {selectedSeats.map(seat => <p>Assento {seat}</p>)}
+            </InfoMovie>
+            <InfoMovie>
+                <span>Comprador</span>
+                <p>Nome: {name}</p>
+                <p>CPF: {cpf}</p>
+            </InfoMovie>
+            <ButtonToInitialPage>
+                <button onClick={() => goToHome()}>Voltar para Home</button>
+            </ButtonToInitialPage>
+        </>
+    )
 }
 
 export default SucessPage

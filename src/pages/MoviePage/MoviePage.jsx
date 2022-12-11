@@ -2,13 +2,12 @@ import { SessionsContainer } from "./MoviePageStyle.js"
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { api } from "../../services/api.js"
-import PageTitle from "../../components/TitlePage/TitlePage.jsx";
+import TitlePage from "../../components/TitlePage/TitlePage.jsx";
 import Session from "../../components/Session/Session.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 
-const MoviePage = ({isMovieSeats, setIsMovieSeats}) => {
+const MoviePage = ({infoMovie, setInfoMovie}) => {
     const {idMovie} = useParams()
-    const [infoMovie, setInfoMovie] = useState([]);
     const [infoDaysMovie, setInfoDaysMovie] = useState([]);
 
     useEffect(()=> {
@@ -25,13 +24,13 @@ const MoviePage = ({isMovieSeats, setIsMovieSeats}) => {
     }, [idMovie])
     return (
         <>
-            <PageTitle title={"Selecione o horário"} />
+            <TitlePage title={"Selecione o horário"} />
             <SessionsContainer>
                 {
-                infoDaysMovie.map((session, index) => <Session session={session} key={index} setIsMovieSeats={setIsMovieSeats} />)
+                infoDaysMovie.map((session, index) => <Session session={session} key={index}/>)
                 }
             </SessionsContainer>
-            <Footer infoMovieFooter={infoMovie} isMovieSeats={isMovieSeats} setIsMovieSeats={setIsMovieSeats}/>
+            <Footer infoMovieFooter={infoMovie}/>
         </>
     )
 }

@@ -8,16 +8,22 @@ import SucessPage from '../../pages/SucessPage/SucessPage.jsx';
 import { useState } from 'react';
 
 function App() {
-  const [isMovieSeats, setIsMovieSeats] = useState(undefined)
+  const [infoMovie, setInfoMovie] = useState([]);
+  const [selectedSeats, setSelectedSeats] = useState([])
+  const [name, setName] = useState("")
+  const [cpf, setCpf] = useState("")
+  const [response, setResponse] = useState([]);
+
+
 
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-          <Route path='/' element={<MoviesList setIsMovieSeats={setIsMovieSeats} />} />
-          <Route path='/sessoes/:idMovie' element={<MoviePage isMovieSeats={isMovieSeats} setIsMovieSeats={setIsMovieSeats} />} />
-          <Route path='/assentos/:idSeat' element={<MovieSeats isMovieSeats={isMovieSeats} />} />
-          <Route path='/sucesso' element={<SucessPage />} />
+          <Route path='/' element={<MoviesList />} />
+          <Route path='/sessoes/:idMovie' element={<MoviePage infoMovie={infoMovie} setInfoMovie={setInfoMovie} />} />
+          <Route path='/assentos/:idSeat' element={<MovieSeats selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats} name={name} setName={setName} cpf={cpf} setCpf={setCpf}  response={response} setResponse={setResponse} />} />
+          <Route path='/sucesso' element={<SucessPage infoMovie={infoMovie} setInfoMovie={setInfoMovie} selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats} name={name} setName={setName} cpf={cpf} setCpf={setCpf} response={response} setResponse={setResponse} />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,8 +1,8 @@
 import { TitlePageContainer } from "./TitlePageStyle"
 
-const TitlePage = ({title}) => {
+const TitlePage = ({title, fontWeight, color}) => {
     return (
-        <TitlePageContainer>
+        <TitlePageContainer fontWeight={fontWeight} color={color}>
             <span>{title}</span>
         </TitlePageContainer>
     )

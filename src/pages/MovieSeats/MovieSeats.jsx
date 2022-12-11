@@ -1,7 +1,7 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { api } from "../../services/api.js"
-import PageTitle from "../../components/TitlePage/TitlePage.jsx";
+import TitlePage from "../../components/TitlePage/TitlePage.jsx";
 import { SeatsContainer,
     FooterContainer, 
     DivSeats, 
@@ -10,14 +10,10 @@ import { SeatsContainer,
     FormContainer} from './MovieSeatsStyle.js';
 import Seat from '../../components/Seat/Seat.jsx';
 
-const MovieSeats = () => {
+const MovieSeats = ({selectedSeats, setSelectedSeats, name, setName, cpf, setCpf, response, setResponse}) => {
     const {idSeat} = useParams()
     const [seats, setSeats] = useState([]);
-    const [response, setResponse] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [selectedSeats, setSelectedSeats] = useState([])
-    const [name, setName] = useState("")
-    const [cpf, setCpf] = useState("")
     const [objectOrder, setObjectOrder] = useState({})
     const navigate = useNavigate()
 
@@ -57,7 +53,7 @@ const MovieSeats = () => {
     } else {
         return (
             <>
-                <PageTitle title={"Selecione o(s) assento(s)"} />
+                <TitlePage title={"Selecione o(s) assento(s)"} />
                 <SeatsContainer>
                     <DivSeats>
                         {seats.map((seat, index) => <Seat seat={seat} key={index} setSelectedSeats={setSelectedSeats} selectedSeats={selectedSeats}/>)}
