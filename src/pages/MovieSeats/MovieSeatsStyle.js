@@ -83,7 +83,7 @@ export const CaptionDiv = styled.div`
     cursor: ${(props) => props.isAvailable ? "pointer" : props.isSelected ? "pointer" : "default"}; ;
 `
 
-export const FormContainer = styled.form`
+export const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;

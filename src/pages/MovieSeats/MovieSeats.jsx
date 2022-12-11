@@ -31,16 +31,16 @@ const MovieSeats = ({selectedSeats, setSelectedSeats, name, setName, cpf, setCpf
         getSeats()
     }, [idSeat])
     
-    const reserveSeats = (e) => {
-        e.preventDefault()
+    useEffect(()=> {    
         setObjectOrder({ids: selectedSeats, name: name, cpf: cpf})
-
+    }, [cpf])
+    
+    const reserveSeats = () => {
+        
         async function postSeats() {
             try {
-                const data = await api.post('/seats/book-many', objectOrder)
-                if(data.data == 'OK!') {
-                    navigate("/sucesso")
-                }
+                await api.post('/seats/book-many', objectOrder)
+                navigate("/sucesso")
             } catch (error) {
                 console.log("Erro:" + error)
             }
@@ -67,13 +67,13 @@ const MovieSeats = ({selectedSeats, setSelectedSeats, name, setName, cpf, setCpf
                             <CaptionDiv isSelected={false} isAvailable={true}></CaptionDiv>
                             <p>Disponível</p>
                         </span>
-                        <span >
+                        <span>
                             <CaptionDiv isSelected={false} isAvailable={false}></CaptionDiv>
                             <p>Indisponível</p>
                         </span>
                     </CaptionsDiv>
                 </SeatsContainer> 
-                <FormContainer onSubmit={(e) => reserveSeats(e)}>
+                <FormContainer>
                     <label htmlFor='name'>
                         <span>Nome do comprador:</span>
                         <input 
@@ -98,7 +98,7 @@ const MovieSeats = ({selectedSeats, setSelectedSeats, name, setName, cpf, setCpf
                             required 
                         />
                     </label>
-                    <button type='submit' data-test="book-seat-btn">Reservar assento(s)</button>
+                    <button onClick={() => reserveSeats()} type='submit' data-test="book-seat-btn">Reservar assento(s)</button>
                 </FormContainer>
                 <FooterContainer data-test="footer">
                     <img src={response.movie.posterURL} alt={response.movie.title} /> 
